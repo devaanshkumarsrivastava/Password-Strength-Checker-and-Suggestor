@@ -1,18 +1,33 @@
-Password-Strength-Checker-and-Suggestor
-the project checks the user given password for its strength and provides a newer stronger password if its weak on score scale
+Password Strength Checker & Generator
 Overview:
-This project checks the strength of a user’s desired password and suggests a stronger alternative if the password is weak.  
-It helps users create secure passwords while keeping them similar to their original choice.
+
+A command-line Python project that:
+
+Checks password strength using entropy-based scoring.
+Explains weaknesses and suggests stronger alternatives.
+Generates random secure passwords.
+Stores masked history of past checks.
 
 Features:
-- Password scoring system (1–10 scale).
-- Checks for length, uppercase letters, digits, and special characters.
-- Suggests stronger passwords if score ≤ 5.
-- Beginner‑friendly Python implementation with modular functions.
 
-Technologies Used:
-- Python (basic functions, loops, conditionals)
-- Standard libraries: `random`, `string`
+Strength Analyzer (strength.py): Calculates character pool size, brute-force combinations, estimated crack time, score, and issues.
+Stronger Password Suggester (suggest.py): Builds a stronger, similar-looking password and re-checks until it scores higher.
+Random Password Generator (generator.py): Creates brand-new random passwords with chosen character types.
+History Storage (storage.py): Saves masked password history in JSON.
+CLI Entry Point (main.py): Provides commands (check, suggest, generate, history) for user interaction.
+
+Installation & Running:
+
+Clone the repo:
+git clone https://github.com/yourusername/password-checker.git
+cd password-checker
+
+Run commands:
+
+python main.py check
+python main.py suggest
+python main.py generate
+python main.py history
 
  Features:
 - Password scoring system (1–10 scale).
@@ -20,15 +35,20 @@ Technologies Used:
 - Suggests stronger passwords if score ≤ 5.
 - Beginner‑friendly Python implementation with modular functions.
 
- Technologies Used:
-- Python (basic functions, loops, conditionals)
-- Standard libraries: `random`, `string`
+ Technologies:
+ 
+Python standard library:
+
+- argparse (CLI parsing)
+- secrets (secure random generation)
+- json (history storage)
+- datetime (timestamps)
+- unittest (testing)
 
 3. Run the program:
 python password_checker.py
 
-5. Testing Instructions
-Run the program and enter different passwords.
+Testing
+Run unit tests:
 
-Try short/simple passwords (e.g., abc123) to see weak suggestions.
-Try strong passwords (e.g., MyPass@2026) to see high scores.
+python -m unittest discover -s tests
