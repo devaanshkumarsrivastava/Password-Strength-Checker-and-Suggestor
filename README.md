@@ -19,7 +19,7 @@ CLI Entry Point (main.py): Provides commands (check, suggest, generate, history)
 Installation & Running:
 
 Clone the repo:
-git clone https://github.com/yourusername/password-checker.git
+git clone https://github.com/devaanshkumarsrivastava/password-checker.git
 cd password-checker
 
 Run commands:
