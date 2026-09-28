@@ -1,41 +1,49 @@
 Statement.md
 
-# Problem Statement
-Weak passwords are one of the most common causes of account breaches.  
-Users often choose short or predictable passwords for convenience, which makes them vulnerable to brute‑force attacks and dictionary attacks.  
-This project aims to provide a simple tool that evaluates password strength and guides users toward stronger alternatives without overwhelming them.
+# Project Statement
+
+# Problem:
+
+Most password strength meters only show a colored bar without explaining why a password is weak or how to improve it. Users are left guessing whether adding a number or making the password longer helps more.  
+This project solves that by analyzing passwords with entropy-based scoring, listing specific weaknesses, suggesting stronger alternatives, generating random secure passwords, and keeping a masked local history of past checks.
 
 # Scope of the Project
-- Input: User enters a desired password through a text interface.
-- Processing: Program calculates a strength score based on length, uppercase letters, digits, and special characters.
-- Output: Displays score (1–10 scale) and, if weak, suggests a stronger password that remains similar to the original.
-- Target Users: Students learning Python basics, and general users who want to improve password security.
+- Input: User interacts via a command-line interface (`main.py`) with options to check, suggest, generate, or view history.  
+- Processing: Passwords are analyzed for character pool size, brute-force combinations, estimated crack time, and scored on a 1–10 scale.  
+- Output: Displays score, issues, suggestions, generated passwords, and history entries.  
+- Target Users: Students learning Python, general users creating secure passwords, and educators demonstrating security concepts.
 
 # Target Users
-- Beginners in programming who want to build practical projects.
-- Everyday users creating passwords for email or online accounts.
-- Educators who want a simple demo project to teach security concepts.
+- Beginners in programming who want a practical project.  
+- Everyday users creating passwords for email or online accounts.  
+- Teachers who want a simple demo project to explain password security.  
 
 # High-Level Features
-- Password scoring system based on multiple criteria.
-- Suggestion generator that improves weak passwords by adding missing elements.
-- Ensures minimum length for stronger passwords.
-- Simple text-based interface for usability.
+- Strength Analyzer (`strength.py`): Calculates entropy, crack time, score, and issues.  
+- Stronger Password Suggester (`suggest.py`): Builds a stronger, similar-looking password and re-checks until it scores higher.  
+- Random Password Generator (`generator.py`): Creates brand-new random passwords with chosen character types.  
+- History Storage (`storage.py`): Saves masked password history in JSON format.  
+- CLI Entry (`main.py`): Provides commands (`check`, `suggest`, `generate`, `history`) for user interaction.  
 
 # Workflow
-1. User enters password.  
-2. Program evaluates password strength.  
-3. Score is displayed (1–10).  
-4. If score ≤ 5, program generates a stronger suggestion.  
-5. User can adopt the suggested password or retry with a new one.
+1. User runs `main.py` and chooses a command.  
+2. For check: password is analyzed, score and issues are displayed, and entry saved to history.  
+3. For suggest: a stronger password is generated and verified to score higher.  
+4. For generate: a new random password is created with chosen options.  
+5. For history: recent masked entries are displayed.  
 
 # Design Decisions
-- Modularity: Functions for scoring, suggesting, and main workflow keep the code clean.  
-- Beginner-Friendly: Uses only standard Python libraries (`random`, `string`).  
-- Security Awareness: Does not store or log passwords, only evaluates them.  
+- Entropy-based scoring: More realistic than simple rule-counting.  
+- Masked history storage: Keeps history useful without storing full passwords.  
+- Re-check loop for suggestions: Ensures suggested password is verifiably stronger.  
+- Use of `secrets` module: Provides cryptographically secure random generation.  
+- Modular design: Each function in its own file for clarity and maintainability.  
 
 # Future Enhancements
-- Add estimation of "time to crack" based on entropy.  
-- Provide multiple suggestions instead of one.  
+- Check against breached-password datasets.  
+- Detect keyboard patterns (e.g., "qwerty", "1234").  
+- Add a visual strength bar in terminal output.  
+- Configurable attacker guessing speed for crack-time estimates.  
+
 - Add GUI interface for better usability.  
 - Integrate with password managers or email signup forms. 
